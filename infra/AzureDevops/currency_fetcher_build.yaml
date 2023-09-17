@@ -1,0 +1,9 @@
+name: CurrencyFetcherBuild
+
+trigger:
+    branches:
+        include:
+            - main
+variables:
+    IMAGE_NAME: currency_fetcher
+    

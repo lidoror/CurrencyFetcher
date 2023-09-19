@@ -20,7 +20,8 @@ stages:
                 targetType: 'inline'
                 script: |
                     echo current is $PWD
-                    echo file are $LS
+                    ls
+                    ls ../
 
                             
           #   - task: Bash@3

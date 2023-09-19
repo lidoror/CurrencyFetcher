@@ -1,0 +1,9 @@
+app:
+  name: CurrencyFetcher
+  env: dev
+  namespace: dev
+image:
+  registry: <registry>
+  name: <name>
+  tag: <tag>
+  pullSecret: <pullSecret>

@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: currency-bot-secret
+  namespace: {{ .Values.app.namespace }}
+data:
+    STATUS_URL: <SURL>
+    EXCHANGE_URL: <EURL> 
+    CHAT_IDS: <CHATS> 
+    BOT_TOKEN: <TOKEN_TEMP> 

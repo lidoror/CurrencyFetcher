@@ -3,8 +3,8 @@ FROM python:alpine3.18
 
 WORKDIR /CurrencyFetcher
 
-COPY currncy_fetcher /CurrencyFetcher
+COPY currncy_fetcher/* /CurrencyFetcher
 
-RUN pip install -r currncy_fetcher/requirments.txt
+RUN pip install -r CurrencyFetcher/requirments.txt
 
-CMD ["python3", "-m", "currency_fetcher.main"]
+CMD ["python3", "-m", "CurrencyFetcher.main"]

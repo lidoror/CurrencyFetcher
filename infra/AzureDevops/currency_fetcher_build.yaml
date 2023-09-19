@@ -29,7 +29,7 @@ stages:
               
             - task: ECRPushImage@1
               inputs:
-                awsCredentials: $(connection_name)
+                awsCredentials: 'AWS ECR'
                 regionName: $(region)
                 imageSource: 'imagename'
                 sourceImageName: '$(REPOSITORY_NAME):'

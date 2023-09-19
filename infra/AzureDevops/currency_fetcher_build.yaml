@@ -9,9 +9,9 @@ variables:
     REGISTRYֹֹֹֹֹֹֹֹֹֹֹֹֹ_NAME: $(account_number) 
     
 stages:
-    - stage: BuildAndPushImage
+    - stage: Build
       jobs:
-          - job: Build&Push
+          - job: BuildAndPushImage
             pool: Azure Pipelines
             steps:
                             

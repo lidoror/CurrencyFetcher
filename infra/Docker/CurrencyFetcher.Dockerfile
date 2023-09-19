@@ -3,7 +3,7 @@ FROM python:alpine3.18
 
 WORKDIR /CurrencyFetcher
 
-COPY currncy_fetcher/* /CurrencyFetcher
+COPY currency_fetcher/* /CurrencyFetcher
 
 WORKDIR /
 

@@ -32,7 +32,7 @@ stages:
                 awsCredentials: $(connection_name)
                 regionName: $(region)
                 imageSource: 'imagename'
-                sourceImageName: '$(REPOSITORY_NAME):$(GIT_COMMIT)'
+                sourceImageName: '$(REPOSITORY_NAME):'
                 sourceImageTag: '$(GIT_COMMIT)'
                 repositoryName: '$(REPOSITORY_NAME)'
                 pushTag: '$(GIT_COMMIT)'

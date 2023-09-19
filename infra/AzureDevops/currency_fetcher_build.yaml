@@ -5,5 +5,39 @@ trigger:
         include:
             - main
 variables:
-    IMAGE_NAME: currency_fetcher
+    REPOSITORY_NAME: currency_fetcher
+    REGISTRYֹֹֹֹֹֹֹֹֹֹֹֹֹ_NAME: $(account_number) 
     
+stages:
+    - stage: Build&PushImage
+      jobs:
+          - job: Build&Push
+            pool: Azure Pipelines
+            steps:
+                            
+            - task: Bash@3
+              displayName: CreatingTag
+              inputs:
+                targetType: 'inline'
+                script: |
+                    GIT_COMMIT=$(git rev-parse --short HEAD)
+                    echo "GIT_COMMIT: ${GIT_COMMIT}"
+                    echo "##vso[task.setvariable variable=GIT_COMMIT]${GIT_COMMIT}"
+
+            - script: docker build -f  infra/Docker/CurrencyFetcher.Dockerfile -t $(REGISTRY_NAME)/$(REPOSITORY_NAME):$(GIT_COMMIT) .
+              displayName: BuildImage
+              
+            - task: Docker@2
+              inputs:
+                containerRegistry: '$(REGISTRY_NAME)'
+                repository: '$(REGISTRY_NAME)/$(REPOSITORY_NAME:)'
+                command: 'push'
+                tags: '$(GIT_COMMIT)'
+
+          
+          
+          - job: GitTea
+            pool: Docker
+            
+
+            

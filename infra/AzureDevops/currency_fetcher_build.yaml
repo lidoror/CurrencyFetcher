@@ -6,7 +6,7 @@ trigger:
             - main
 variables:
     REPOSITORY_NAME: currency_fetcher
-    REGISTRYֹֹֹֹֹֹֹֹֹֹֹֹֹ_NAME: $(account_number) 
+    REGISTRYֹֹֹֹֹֹֹֹֹֹֹֹֹ_NAME: $(ACCOUNT_NUMBER)
     
 stages:
     - stage: Build

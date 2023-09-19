@@ -6,7 +6,7 @@ trigger:
             - main
 variables:
     REPOSITORY_NAME: currency_fetcher
-    REGISTRYֹֹֹֹֹֹֹֹֹֹֹֹֹ_NAME: $(ACCOUNT_NUMBER)
+
     
 stages:
     - stage: Build
@@ -30,7 +30,7 @@ stages:
             - task: Docker@2
               inputs:
                 containerRegistry: '$(REGISTRY_NAME)'
-                repository: '$(REGISTRY_NAME)/$(REPOSITORY_NAME:)'
+                repository: '$(ACCOUNT_NUMBER)/$(REPOSITORY_NAME:)'
                 command: 'push'
                 tags: '$(GIT_COMMIT)'
 

@@ -58,6 +58,7 @@ stages:
                   script: |
                     git config --global user.email "$(gitea_mail)"
                     git config --global user.name "$(gitea_name)"
+                    git remote add origin "$(gitea_server)"
                     git push origin main
 
 

@@ -28,15 +28,14 @@ stages:
               displayName: BuildImage
               
             - task: ECRPushImage@1
+              displayName: PushingImageToECR
               inputs:
-                awsCredentials: 'AWS ECR'
-                regionName: $(region)
-                imageSource: 'imagename'
-                sourceImageName: '$(REPOSITORY_NAME):'
-                sourceImageTag: '$(GIT_COMMIT)'
+                awsCredentials: $(connection_name)
+                regionName: us-east-1
+                imageSource: 'imageid'
+                sourceImageId: '$(REPOSITORY_NAME):$(GIT_COMMIT)'
                 repositoryName: '$(REPOSITORY_NAME)'
                 pushTag: '$(GIT_COMMIT)'
-          
           
           - job: GitTea
             pool: Docker

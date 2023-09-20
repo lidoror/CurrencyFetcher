@@ -58,8 +58,7 @@ stages:
                     mkdir -p ~/.ssh
                     echo "$(gitea_key)" > ~/.ssh/id_ed25519
                     chmod 600 ~/.ssh/id_ed25519
-                    GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=no"
-
+                    
 
 
               
@@ -68,6 +67,7 @@ stages:
                 inputs:
                   targetType: 'inline'
                   script: |
+                    GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=no"
                     git config --global user.email "$(gitea_mail)"
                     git config --global user.name "$(gitea_name)"
                     git remote add gitea $(gitea_remote_repo)

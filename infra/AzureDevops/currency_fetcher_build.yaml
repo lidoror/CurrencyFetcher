@@ -50,15 +50,22 @@ stages:
                  script: |
                   apt install openssh-client -y
 
+
+              - task: DownloadSecureFile@1
+                displayName: GettingGiteaCert
+                name: gitea_token
+                inputs:
+                  secureFile: 'gitea_token'
+                
               - task: Bash@3
                 displayName: giteaKeyPrep
                 inputs:
                   targetType: 'inline'
                   script: |
                     mkdir -p ~/.ssh
-                    echo "$(gitea_key)" > ~/.ssh/id_ed25519
+                    cat "$(gitea_token.secureFilePath)" > ~/.ssh/id_ed25519
                     chmod 600 ~/.ssh/id_ed25519
-                    ssh-keyscan -t ed25519 $(gitea_server) >> ~/.ssh/known_hosts
+                    ssh-keyscan -p $(gitea_server_port) -t ed25519 $(gitea_server) >> ~/.ssh/known_hosts
 
 
               

@@ -39,6 +39,8 @@ stages:
           
           - job: GitTea
             pool: Docker
+            workspace:
+              clean: all
             steps:
               
               - task: Bash@3

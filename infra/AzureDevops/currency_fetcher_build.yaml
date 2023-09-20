@@ -30,7 +30,7 @@ stages:
             - task: ECRPushImage@1
               displayName: PushingImageToECR
               inputs:
-                awsCredentials: $(connection_name)
+                awsCredentials: aws_ecr
                 regionName: us-east-1
                 imageSource: 'imageid'
                 sourceImageId: '$(REPOSITORY_NAME):$(GIT_COMMIT)'

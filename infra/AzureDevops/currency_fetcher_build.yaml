@@ -39,5 +39,27 @@ stages:
           
           - job: GitTea
             pool: Docker
-            
+            steps:
+              
+              - task: Bash@3
+                displayName: giteaKeyPrep
+                inputs:
+                  targetType: 'inline'
+                  script: |
+                    mkdir -p ~/.ssh
+                    echo "$(gitea_key)" > ~/.ssh/id_ed25519
+                    chmod 600 ~/.ssh/id_ed25519
+                    ssh-keyscan github.com >> ~/.ssh/known_hosts
+              
+              - task: Bash@3
+                displayName: giteaKeyPrep
+                inputs:
+                  targetType: 'inline'
+                  script: |
+                    git config --global user.email "$(gitea_mail)"
+                    git config --global user.name "$(gitea_name)"
+                    git push origin main
+
+
+
 

@@ -58,7 +58,8 @@ stages:
                     mkdir -p ~/.ssh
                     echo "$(gitea_key)" > ~/.ssh/id_ed25519
                     chmod 600 ~/.ssh/id_ed25519
-                    ssh-keyscan "$(gitea_server)" >> ~/.ssh/known_hosts
+                    GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=no"
+
 
 
               

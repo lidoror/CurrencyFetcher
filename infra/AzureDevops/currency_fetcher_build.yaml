@@ -44,6 +44,13 @@ stages:
             steps:
               
               - task: Bash@3
+                displayName: installDependency
+                inputs: 
+                 targetType: inline
+                 script: |
+                  sudo apt-get install openssh-client
+
+              - task: Bash@3
                 displayName: giteaKeyPrep
                 inputs:
                   targetType: 'inline'

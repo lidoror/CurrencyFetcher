@@ -48,7 +48,7 @@ stages:
                 inputs: 
                  targetType: inline
                  script: |
-                  sudo apt-get install openssh-client
+                  apt install openssh-client -y
 
               - task: Bash@3
                 displayName: giteaKeyPrep

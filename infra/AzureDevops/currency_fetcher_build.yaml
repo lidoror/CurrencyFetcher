@@ -84,6 +84,7 @@ stages:
                     git fetch --all
                     git checkout --force $(Build.SourceVersion)
                     git pull origin $(Build.SourceBranch)
+
               
               - task: Bash@3
                 displayName: pushRepo
@@ -93,7 +94,8 @@ stages:
                     git config --global user.email "$(gitea_mail)"
                     git config --global user.name "$(gitea_name)"
                     git remote add gitea $(gitea_remote_repo)
-                    git push --all gitea
+                    git remote -v
+                    git push gitea --all
 
 
 

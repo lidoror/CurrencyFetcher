@@ -74,29 +74,26 @@ stages:
                     cat "$(gitea_token.secureFilePath)" > ~/.ssh/id_ed25519
                     chmod 600 ~/.ssh/id_ed25519
                     ssh-keyscan -p $(gitea_server_port) -t ed25519 $(gitea_server) >> ~/.ssh/known_hosts
-                    git status 
 
-              # - task: Bash@3
-              #   displayName: updateRepo
-              #   inputs:
-              #     targetType: 'inline'
-              #     script: |
-              #       git fetch --all
-              #       git checkout --force $(Build.SourceVersion)
-              #       git pull origin $(Build.SourceBranch)
+
+              - task: Bash@3
+                displayName: updateRepo
+                inputs:
+                  targetType: 'inline'
+                  script: |
+                    git fetch --all
+                    git checkout --force $(Build.SourceVersion)
+                    git pull origin $(Build.SourceBranch)
               
-              # - task: Bash@3
-              #   displayName: pushRepo
-              #   inputs:
-              #     targetType: 'inline'
-              #     script: |
-              #       git config --global user.email "$(gitea_mail)"
-              #       git config --global user.name "$(gitea_name)"
-              #       git remote add gitea $(gitea_remote_repo)
-              #       #git push gitea --all
-              #       for branch in $(git branch --format='%(refname:short)' --no-colors); do
-              #         git push origin "$branch"
-              #       done
+              - task: Bash@3
+                displayName: pushRepo
+                inputs:
+                  targetType: 'inline'
+                  script: |
+                    git config --global user.email "$(gitea_mail)"
+                    git config --global user.name "$(gitea_name)"
+                    git remote add gitea $(gitea_remote_repo)
+                    git push gitea --all
 
 
 

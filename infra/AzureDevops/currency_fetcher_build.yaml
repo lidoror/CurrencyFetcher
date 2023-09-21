@@ -82,10 +82,13 @@ stages:
                   targetType: 'inline'
                   script: |
                     git fetch --all
+                    git remote add gitea $(gitea_remote_repo)
                     for remote_branch in $(git branch -r | grep 'origin/'); do
                       branch_name=$(echo "$remote_branch" | sed 's/origin\///')
                       git checkout "$branch_name"
                       git pull origin "$branch_name"
+                      git pull gitea "$branch_name"
+
                     done
 
               
@@ -96,8 +99,6 @@ stages:
                   script: |
                     git config --global user.email "$(gitea_mail)"
                     git config --global user.name "$(gitea_name)"
-                    git remote add gitea $(gitea_remote_repo)
-                    git pull gitea 
                     git push gitea --all
 
 

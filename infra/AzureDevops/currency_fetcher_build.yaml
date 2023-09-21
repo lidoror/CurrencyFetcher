@@ -74,7 +74,7 @@ stages:
                     cat "$(gitea_token.secureFilePath)" > ~/.ssh/id_ed25519
                     chmod 600 ~/.ssh/id_ed25519
                     ssh-keyscan -p $(gitea_server_port) -t ed25519 $(gitea_server) >> ~/.ssh/known_hosts
-                    cat infra/AzureDevops/currency_fetcher_build.yaml
+                    git status 
 
               # - task: Bash@3
               #   displayName: updateRepo

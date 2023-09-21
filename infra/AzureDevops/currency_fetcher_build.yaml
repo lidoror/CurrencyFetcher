@@ -92,7 +92,10 @@ stages:
                     git config --global user.email "$(gitea_mail)"
                     git config --global user.name "$(gitea_name)"
                     git remote add gitea $(gitea_remote_repo)
-                    git push gitea --all
+                    #git push gitea --all
+                    for branch in $(git branch --format='%(refname:short)' --no-colors); do
+                      git push origin "$branch"
+                    done
 
 
 

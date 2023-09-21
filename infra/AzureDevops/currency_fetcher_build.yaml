@@ -97,6 +97,7 @@ stages:
                     git config --global user.email "$(gitea_mail)"
                     git config --global user.name "$(gitea_name)"
                     git remote add gitea $(gitea_remote_repo)
+                    git pull gitea 
                     git push gitea --all
 
 

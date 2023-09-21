@@ -82,8 +82,10 @@ stages:
                   targetType: 'inline'
                   script: |
                     git fetch --all
-                    git checkout --force $(Build.SourceVersion)
-                    git pull origin $(Build.SourceBranch)
+                    for branch in $(git branch --format='%(refname:short)' --no-colors); do
+                      git checkout "$branch"
+                      git pull origin "$branch"
+                    done
 
               
               - task: Bash@3
@@ -94,7 +96,6 @@ stages:
                     git config --global user.email "$(gitea_mail)"
                     git config --global user.name "$(gitea_name)"
                     git remote add gitea $(gitea_remote_repo)
-                    git checkout main
                     git push gitea --all
 
 

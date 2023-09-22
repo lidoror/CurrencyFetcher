@@ -10,7 +10,7 @@ trigger:
         - currency_fetcher/*
         - infra/AzureDevops/*
         - infra/Docker/*
-        - infra/helm/CurrencyFetcher/*
+
 
 variables:
     REPOSITORY_NAME: currency_fetcher

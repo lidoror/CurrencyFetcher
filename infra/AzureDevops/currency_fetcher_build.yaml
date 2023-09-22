@@ -81,7 +81,7 @@ stages:
                 inputs:
                   targetType: 'inline'
                   script: |
-                    git clone origin main
+                    
                     for remote_branch in $(git branch -r | grep 'origin/'); do
                       branch_name=$(echo "$remote_branch" | sed 's/origin\///')
                       git checkout "$branch_name"

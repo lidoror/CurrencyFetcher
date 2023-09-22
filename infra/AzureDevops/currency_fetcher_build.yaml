@@ -19,31 +19,31 @@ variables:
 stages:
     - stage: Build
       jobs:
-          # - job: BuildAndPushImage
-          #   pool: Azure Pipelines
-          #   steps:
+          - job: BuildAndPushImage
+            pool: Azure Pipelines
+            steps:
                             
-          #   - task: Bash@3
-          #     displayName: CreatingTag
-          #     inputs:
-          #       targetType: 'inline'
-          #       script: |
-          #           GIT_COMMIT=$(git rev-parse --short HEAD)
-          #           echo "GIT_COMMIT: ${GIT_COMMIT}"
-          #           echo "##vso[task.setvariable variable=GIT_COMMIT]${GIT_COMMIT}"
+            - task: Bash@3
+              displayName: CreatingTag
+              inputs:
+                targetType: 'inline'
+                script: |
+                    GIT_COMMIT=$(git rev-parse --short HEAD)
+                    echo "GIT_COMMIT: ${GIT_COMMIT}"
+                    echo "##vso[task.setvariable variable=GIT_COMMIT]${GIT_COMMIT}"
 
-          #   - script: docker build -f  infra/Docker/CurrencyFetcher.Dockerfile -t $(REPOSITORY_NAME):$(GIT_COMMIT) .
-          #     displayName: BuildImage
+            - script: docker build -f  infra/Docker/CurrencyFetcher.Dockerfile -t $(REPOSITORY_NAME):$(GIT_COMMIT) .
+              displayName: BuildImage
               
-          #   - task: ECRPushImage@1
-          #     displayName: PushingImageToECR
-          #     inputs:
-          #       awsCredentials: aws_ecr
-          #       regionName: us-east-1
-          #       imageSource: 'imageid'
-          #       sourceImageId: '$(REPOSITORY_NAME):$(GIT_COMMIT)'
-          #       repositoryName: '$(REPOSITORY_NAME)'
-          #       pushTag: '$(GIT_COMMIT)'
+            - task: ECRPushImage@1
+              displayName: PushingImageToECR
+              inputs:
+                awsCredentials: aws_ecr
+                regionName: us-east-1
+                imageSource: 'imageid'
+                sourceImageId: '$(REPOSITORY_NAME):$(GIT_COMMIT)'
+                repositoryName: '$(REPOSITORY_NAME)'
+                pushTag: '$(GIT_COMMIT)'
           
           - job: GitTea
             pool: Docker
